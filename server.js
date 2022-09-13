@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const logger = require('./middlewares/logger')
 const morgan = require('morgan')
 const colors = require('colors')
+const errorHandler = require('./middlewares/errors')
 
 // Import database
 const connectDB = require('./config/db')
@@ -11,7 +12,7 @@ const connectDB = require('./config/db')
 dotenv.config({path: "./config/config.env"})
 
 // Import routes
-const authRoutes = require('./routes/authRoutes.routes');
+const bootcampRoutes = require('./routes/bootcamp.routes');
 
 
 
@@ -44,7 +45,10 @@ if(process.env.NODE_ENV==='development'){
 }
 
 // initialize routes
-app.use('/api/v1/user', authRoutes);
+app.use('/api/v1/bootcamp', bootcampRoutes);
+
+// initialize errorhandler middleware
+app.use(errorHandler)
 
 
 
