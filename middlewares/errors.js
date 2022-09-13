@@ -4,13 +4,13 @@ const ErrorResponse = require('../utils/errorResponse');
 const errorHandler = (err, req, res, next)=>{
     let error = {...err}
 
-    console.log(err.name)
+    console.log(err)
 
     error.message = err.message
 
     // Mongoose bad ObjectID
     if(err.name === 'CastError' ){
-        const message = `User not found for the ID ${err.value}`
+        const message = `Resource not found for the ID ${err.value}`
         error = new ErrorResponse(message, 404)
 
     }

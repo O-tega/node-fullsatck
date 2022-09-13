@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const color = require('colors')
 
 
 const connectDB = async ()=>{
@@ -7,11 +8,11 @@ const connectDB = async ()=>{
         mongoose.connect(process.env.MONGO_URI, {
             // useNewUrlParser: true,
             // useCreateIndex: true,
-            // useFindAndModify: false
+            // useFindAndModify: true
         });
         console.log(`Database is connected successfully at: ${conn.connection.host}`.cyan.underline.bold)
     }catch(err){
-        console.log('Error: ', err.red);
+        console.log('Error: '.red, err);
         process.exit(1)
     }
          
